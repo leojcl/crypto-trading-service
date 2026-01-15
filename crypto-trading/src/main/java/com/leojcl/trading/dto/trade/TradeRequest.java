@@ -1,24 +1,27 @@
-package com.leojcl.trading.dto;
+package com.leojcl.trading.dto.trade;
 
 import com.leojcl.trading.domain.TradeSide;
 import com.leojcl.trading.domain.TradingSymbol;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TradeResponse {
+public class TradeRequest {
 
-    private Long tradeId;
+    @NotNull
     private TradingSymbol symbol;
+
+    @NotNull
     private TradeSide side;
-    private BigDecimal price;
+
+    @NotNull
+    @DecimalMin("0.0000001")
     private BigDecimal quantity;
-    private BigDecimal quoteAmount;
-    private Instant createdAt;
 }

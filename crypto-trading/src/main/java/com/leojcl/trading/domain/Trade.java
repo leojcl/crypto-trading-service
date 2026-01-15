@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 @Entity
-@Table(name = "trade", indexes = {@Index(name = "idx_trade_user_id_created_at", columnList = "user_id, create_at")})
+@Table(name = "trade", indexes = {@Index(name = "idx_trade_user_id_created_at", columnList = "user_id, created_at")})
 @Getter
 @Setter
 @NoArgsConstructor

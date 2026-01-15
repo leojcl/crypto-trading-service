@@ -1,4 +1,4 @@
-package com.leojcl.trading.dto;
+package com.leojcl.trading.dto.intergration;
 
 import lombok.*;
 
@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ExternalPriceDto {
+public class ApiBinancePriceResponse {
 
     private String symbol;
     private BigDecimal bidPrice;

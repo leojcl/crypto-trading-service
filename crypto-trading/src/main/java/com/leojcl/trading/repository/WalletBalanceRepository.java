@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface WalletBalanceRepository extends JpaRepository<WalletBalance, Long> {
 
-    List<WalletBalance> findByUserId(Long userId);
+    List<WalletBalance> findByUserID(Long userId);
 
-    Optional<WalletBalance> findByUserIdAndAsset(Long userId, Asset asset);
+    Optional<WalletBalance> findByUserIDAndAsset(Long userId, Asset asset);
 }

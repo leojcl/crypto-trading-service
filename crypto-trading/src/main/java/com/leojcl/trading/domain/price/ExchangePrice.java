@@ -1,4 +1,4 @@
-package com.leojcl.trading.dto;
+package com.leojcl.trading.domain.price;
 
 import com.leojcl.trading.domain.TradingSymbol;
 import lombok.*;
@@ -11,10 +11,11 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class LastestPriceResponse {
+public class ExchangePrice {
 
     private TradingSymbol symbol;
     private BigDecimal bidPrice;
     private BigDecimal askPrice;
+    private String source;
     private Instant timestamp;
 }

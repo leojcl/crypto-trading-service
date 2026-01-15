@@ -1,4 +1,4 @@
-package com.leojcl.trading.dto;
+package com.leojcl.trading.dto.wallet;
 
 import com.leojcl.trading.domain.Asset;
 import lombok.*;
