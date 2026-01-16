@@ -48,7 +48,9 @@ public class TradeService {
         // logic for BUY
         if (request.getSide() == TradeSide.BUY) {
             if (quoteBalance.getBalance().compareTo(quoteAmount) < 0) {
-                throw new IllegalStateException("Insufficient balance: USDT required " + quoteAmount);
+                throw new IllegalStateException("Insufficient balance: USDT required " + quoteAmount
+                        + ", available: " + quoteBalance.getBalance()
+                );
             }
             quoteBalance.setBalance(quoteBalance.getBalance().subtract(quoteAmount));
             baseBalance.setBalance(baseBalance.getBalance().add(quantity));
@@ -56,8 +58,11 @@ public class TradeService {
 
         // logic for SELL
         else if (request.getSide() == TradeSide.SELL) {
-            if (quoteBalance.getBalance().compareTo(quantity) < 0) {
-                throw new IllegalStateException("Insufficient"  + baseAsset + "balance. required " + quantity);
+
+            if (baseBalance.getBalance().compareTo(quantity) < 0) {
+                throw new IllegalStateException("Insufficient"  + baseAsset + "balance. required " + quantity
+                       + ", available: " + baseBalance.getBalance()
+                );
             }
             baseBalance.setBalance(baseBalance.getBalance().subtract(quantity));
             quoteBalance.setBalance(quoteBalance.getBalance().add(quoteAmount));
@@ -100,6 +105,7 @@ public class TradeService {
     }
 
     private BigDecimal resolvePrice(MarketPrice marketPrice, TradeSide side){
+        // buy use ask price, sell use bid price
         return  side == TradeSide.BUY
                 ? marketPrice.getAskPrice() : marketPrice.getBidPrice();
     }
