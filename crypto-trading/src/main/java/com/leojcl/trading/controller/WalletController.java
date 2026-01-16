@@ -18,7 +18,7 @@ public class WalletController {
 
     private final WalletService walletService;
 
-    @GetMapping("/leoJclWallet")
+    @GetMapping("/balances")
     public ResponseEntity<List<WalletBalanceDto>> getMyWalletBalances(
             @RequestHeader("X-USER-ID") Long userId) {
 
