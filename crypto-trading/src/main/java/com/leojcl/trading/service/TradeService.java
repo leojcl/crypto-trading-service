@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -108,5 +109,22 @@ public class TradeService {
         // buy use ask price, sell use bid price
         return  side == TradeSide.BUY
                 ? marketPrice.getAskPrice() : marketPrice.getBidPrice();
+    }
+
+    public List<TradeResponse> getUserTradingHistory(Long userId){
+
+        var trades = tradeRepository.findByUserIdOrderByCreatedAtDesc(userId);
+
+        return trades.stream()
+                .map(trade -> TradeResponse.builder()
+                        .tradeId(trade.getId())
+                        .symbol(trade.getSymbol())
+                        .side(trade.getSide())
+                        .price(trade.getPrice())
+                        .quantity(trade.getQuantity())
+                        .quoteAmount(trade.getQuoteAmount())
+                        .createdAt(trade.getCreatedAt())
+                        .build())
+                .toList();
     }
 }

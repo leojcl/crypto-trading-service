@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/trades")
 @RequiredArgsConstructor
@@ -21,5 +23,13 @@ public class TradeController {
 
         TradeResponse response = tradeService.executeTrade(userId, request);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/history")
+    public ResponseEntity<List<TradeResponse>> getTradingHistory(@RequestHeader("X-USER-ID") Long userId){
+
+        List<TradeResponse> history = tradeService.getUserTradingHistory(userId);
+        return ResponseEntity.ok(history);
+
     }
 }
