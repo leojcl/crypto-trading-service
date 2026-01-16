@@ -86,3 +86,7 @@ Endpoint
 GET /api/trades/history
 ```
 ---
+
+## Final notes 
+- This project is designed for assessment purposes.
+- No external trading system integration is performed.
